@@ -2,17 +2,16 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Coin from './components/Coins/Coin';
+import AccountBalance from './components/AccountBalance/AccountBalance';
 
 /*
 //usage snippet flop
-
 let sum = 0;
 for(let num of [0,1,2,3,4,5]) {
   sum += num;
 }
 
 //usage prom => promise
-
 return new Promise((resolve, reject) => {
   
 }).then((result) => {
@@ -23,7 +22,6 @@ return new Promise((resolve, reject) => {
 
 
 //exemple usage bracket colorizer
-
 [1,2,3,4,5,6]
   .map( (item, index) => {return { item: item, key: index}; })
   .reduce( (accumulator, nextValue) => {
@@ -50,6 +48,8 @@ function App() {
           Learn React
         </a> */}
       </header>
+      {/*ajout component balance*/}
+      <AccountBalance amount={10000} />
       <table className="coin-table"> 
       <thead>
         <tr>

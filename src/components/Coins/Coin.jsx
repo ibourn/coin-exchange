@@ -1,25 +1,28 @@
 import React, { Component } from 'react';
-import './Coin.css';
+//import './Coin.css';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+ 
+const Td = styled.td`
+    border: 1px solid #cccccc;
+    width: 25vh;
+`;
 
 
 export default class Coin extends Component {
-    //SI que render du static : les props
-    //pas beson de constructeur
-    //si function on appel à states... besoin constructeur
+    //Si que du statique (props) sans modification => pas besoin de constructeur
+    //Si modif ou state => besoin constructeur ET super dedans
     constructor(props) {
         super(props);
         this.state = {
             price: this.props.price
         }
-        //on associe handle à un context (qu contient les valeur
-        //sinon vide => Nan) 
-        //ici on le lie au coposant pour avoir accès à son this
-        //et besoin this. this. car c'est son nom on réference à lui même
+        //on associe handle à un contexte (qui contient les valeurs sinon vide => Nan) 
+        //on le lie au this du composant pour avoir accès à son this
         this.handleClick = this.handleClick.bind(this);
     }
     /*
-    //permet d'attraper la valeur des etats qd document est monté
+    //permet de catcher les états et leurs valeurs quand le doc est monté
     componentDidMount() {
         const callback = () => {
             //set the state to a new random value
@@ -37,7 +40,7 @@ export default class Coin extends Component {
             //ou
            // this.setState({price: oldState.price * randomPercentage})
         }
-        //on fait appel a callback tt seconde
+        //on fait appel à un callback tte les  secondes
         setInterval( callback, 1000 );
 
     }
@@ -57,23 +60,24 @@ export default class Coin extends Component {
 
     }
 
+    //plus besoin de : <tr className="coin-row">
     render() {
             return(
-                <tr className="coin-row">
-                  <td>{this.props.name}</td>
-                  <td>{this.props.ticker}</td>
-                  <td>${this.state.price}</td>
-                  <td>
+                <tr>
+                  <Td>{this.props.name}</Td>
+                  <Td>{this.props.ticker}</Td>
+                  <Td>${this.state.price}</Td>
+                  <Td>
                       <form action="">
                           <button onClick={this.handleClick}>Refresh</button>
                       </form>
-                  </td>
+                  </Td>
                 </tr>
               );
 
     }
 }
-//l12 $ pour signe $ ds html pas de tidddle
+//pour $ : hors{} c'est du html!!! donc déjà un string
 
 Coin.propTypes = {
     name: PropTypes.string.isRequired,
