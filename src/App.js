@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import ExchangeHeader from './components/ExchangeHeader/ExchangeHeader';
 import CoinList from './components/CoinList/CoinList';
 import AccountBalance from './components/AccountBalance/AccountBalance';
@@ -44,25 +43,46 @@ class App extends React.Component {
           price: 298.99
         },
         {
-          name: "Ethereum",
-          ticker: 'ETH',
+          name: "Bthereum",
+          ticker: 'BTH',
           price: 274.9
         },
         {
-          name: "Ethereum",
-          ticker: 'ETH',
+          name: "Cthereum",
+          ticker: 'CTH',
           price: 274.9
         }
       ]
     }
+    this.handleRefresh = this.handleRefresh.bind(this);
   }
+
+  handleRefresh(valueChangeticker) {
+    //const coin = this.state.coinData.find(({ticker}) => ticker === valueChangeticker);
+    const newCoinData = this.state.coinData.map(function ({ ticker, name, price }) {
+      let newPrice = price;
+      if (ticker === valueChangeticker) {
+        const randomPercentage = 0.995 + Math.random() * 0.01;
+        newPrice = newPrice * randomPercentage;
+      };
+    
+    return {
+      ticker,
+      name,
+      price: newPrice
+    }
+  });
+
+    this.setState({ coinData: newCoinData });
+  };
+
 
   render() {
     return (
       <DivApp>
         <ExchangeHeader />
         <AccountBalance amount={this.state.balance} />
-        <CoinList coinData={this.state.coinData} />
+        <CoinList coinData={this.state.coinData} handleRefresh={this.handleRefresh} />
       </DivApp>
     );
   }
