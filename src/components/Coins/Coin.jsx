@@ -8,15 +8,27 @@ const Td = styled.td`
     width: 25vh;
 `;
 
+const Button = styled.button`
+    height: 2rem;
+    width: 100%;
+    background-color: #282c34;
+    color: #61dafb;
+    border: none;
+    font-size: 1rem;
+    :active {
+        background: #0053ba;
+    }
+    :hover {
+        border: 1px solid #cccccc;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+`;
+
+
 export default class Coin extends Component {
 
-    constructor(props) {
-        super(props);
-        this.handleClick = this.handleClick.bind(this);
-    }
-   
-
-    handleClick(event) {
+    handleClick = (event) => {
         // Prevent the default action of submitting the form
         event.preventDefault();
 
@@ -24,14 +36,20 @@ export default class Coin extends Component {
     }
 
     render() {
+        /*
+            const toggleBalance = this.props.showBalance ?
+             <Td>{this.props.balance}</Td> : null;
+        */
+
             return(
                 <tr>
                   <Td>{this.props.name}</Td>
                   <Td>{this.props.ticker}</Td>
+                  {this.props.showBalance ? <Td>{this.props.balance}</Td> : null}
                   <Td>${this.props.price}</Td>
                   <Td>
                       <form action="">
-                          <button onClick={this.handleClick}>Refresh</button>
+                          <Button onClick={this.handleClick}>Refresh</Button>
                       </form>
                   </Td>
                 </tr>
