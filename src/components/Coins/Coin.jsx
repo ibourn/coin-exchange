@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 //import './Coin.css';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -25,38 +25,33 @@ const Button = styled.button`
     }
 `;
 
+//based class component => functionnal component
+export default function Coin(props) {
+    //const car propriétés de classe deviennent membre de function
 
-export default class Coin extends Component {
-
-    handleClick = (event) => {
+    const handleClick = (event) => {
         // Prevent the default action of submitting the form
         event.preventDefault();
 
-        this.props.handleRefresh(this.props.ticker);
+        props.handleRefresh(props.id);
     }
 
-    render() {
-        /*
-            const toggleBalance = this.props.showBalance ?
-             <Td>{this.props.balance}</Td> : null;
-        */
-
-            return(
-                <tr>
-                  <Td>{this.props.name}</Td>
-                  <Td>{this.props.ticker}</Td>
-                  {this.props.showBalance ? <Td>{this.props.balance}</Td> : null}
-                  <Td>${this.props.price}</Td>
-                  <Td>
-                      <form action="">
-                          <Button onClick={this.handleClick}>Refresh</Button>
-                      </form>
-                  </Td>
-                </tr>
-              );
+    //plus de render ds fonction mais toujours return statement qui passe en top level
+    return (
+        <tr>
+            <Td>{props.name}</Td>
+            <Td>{props.ticker}</Td>
+            {props.showBalance ? <Td>{props.balance}</Td> : null}
+            <Td>${props.price}</Td>
+            <Td>
+                <form action="">
+                    <Button onClick={handleClick}>Refresh</Button>
+                </form>
+            </Td>
+        </tr>
+    );
 
     }
-}
 //pour $ : hors{} c'est du html!!! donc déjà un string
 
 Coin.propTypes = {

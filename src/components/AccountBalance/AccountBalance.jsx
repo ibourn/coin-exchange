@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-//import './AccountBalance.css'; //css remplacé par le styled-component
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -30,42 +29,22 @@ const Button = styled.button`
     }
 `;
 
-export default class AccountBalance extends Component {
-    constructor(props) {
-        super(props);
-        //this.handleClick = this.handleClick.bind(this);
-    }
-   
-    /* pas nécéssaire
-    handleClick(event) {
-        // Prevent the default action of submitting the form
-        event.preventDefault();
+export default function AccountBalance(props) {
 
-        this.props.handleToggleBalance();
-    }
-    */
+    const buttonText = props.showBalance ? 'Hide Balance' : 'Show Balance';
 
-    render() {
-        const buttonText = this.props.showBalance ? 'Hide Balance' : 'Show Balance';
+    const toggleBalance = props.showBalance ?
+        <span><strong>Balance : </strong>$ {props.amount}</span> : null;
 
-        const toggleBalance = this.props.showBalance ?
-         <span><strong>Balance : </strong>$ {this.props.amount}</span> : null;
 
-         /*lui
-        let toggleBalance = null;
-        if (this.props.showBalance) {
-            content = <><strong>Balance : </strong>$ {this.props.amount}</>
-        }
-         */
-
-        return (
-            <Section className="balance">
-                {toggleBalance}
-                <Button onClick={this.props.handleToggleBalance}>{buttonText}</Button>
-            </Section>
-        );
-    }
+    return (
+        <Section className="balance">
+            {toggleBalance}
+            <Button onClick={props.handleToggleBalance}>{buttonText}</Button>
+        </Section>
+    );
 }
+
 
 AccountBalance.propTypes = {
     amount: PropTypes.number.isRequired
