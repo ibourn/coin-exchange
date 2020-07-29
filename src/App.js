@@ -47,7 +47,7 @@ useEffect(function() {
   const componentDidMount = async () => {
     const response = await axios.get( coinsUrl );
     const coinIds = response.data.slice(0, COIN_COUNT).map( coin => coin.id );
-
+    //debugger;
     const promises = coinIds.map( id => axios.get( tickerUrl + id ));
     const coinData = await Promise.all( promises );
 
@@ -69,12 +69,14 @@ useEffect(function() {
 
 
 const handleRefresh = async (valueChangeId) => {
+
   const response =  await axios.get( tickerUrl + valueChangeId);
   //debugger;
   const newPrice = formatPrice( response.data.quotes["USD"].price );
   const newCoinData = coinData.map( function( values ) {
     let newValues = {...values};
-    if (values.id === valueChangeId) {
+    debugger;
+    if (values.key === valueChangeId) {
       newValues.price = newPrice;
     };
   
