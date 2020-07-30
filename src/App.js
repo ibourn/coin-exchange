@@ -23,19 +23,11 @@ const DivApp = styled.div`
 function App(props) {
 
   return (
-    <>
-    <div>
-    <h1 className="">This is the HOME Page</h1>
-    <p>
-      Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-     
-    </p>
-  </div>
-
     <DivApp>
-      <ExchangeHeader />
       <BrowserRouter>
+      <ExchangeHeader />
       <NavBar />
+      
       <div className="container mt-2" style={{ marginTop: 40 }}>
         <Switch>
           <Route exact path="/">
@@ -44,11 +36,15 @@ function App(props) {
           <Route path="/about">
             <About />
           </Route>
+          <Route path="/profile:name">
+            <About />
+          </Route>
         </Switch>
       </div>
+      
     </BrowserRouter>
+    
     </DivApp>
-    </>
   );
   }
 

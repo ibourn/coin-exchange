@@ -8,11 +8,6 @@ import axios from 'axios';
 import 'bootswatch/dist/flatly/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/js/all';
 
-const DivApp = styled.div`
-    text-align: center;
-    background-color: rgb(20, 56, 97);
-    color: #cccccc;
-    `;
 
 
 const COIN_COUNT = 10;
@@ -102,17 +97,7 @@ const handleRefresh = async (valueChangeId) => {
   
     return (
       <>
-      <div>
-      <h1 className="">This is the HOME Page</h1>
-      <p>
-        Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-       
-      </p>
-    </div>
-
-      <DivApp>
-        <ExchangeHeader />
-        <AccountBalance 
+         <AccountBalance 
           amount={balance}
           handleToggleBalance={handleToggleBalance} 
           showBalance={showBalance} />
@@ -120,7 +105,6 @@ const handleRefresh = async (valueChangeId) => {
           coinData={coinData}
           handleRefresh={handleRefresh}
           showBalance={showBalance} />
-      </DivApp>
       </>
     );
   }
