@@ -66,13 +66,15 @@ useEffect(function() {
 
     const coinPriceData = coinData.map( function(response) {
       const coin = response.data;
+      
       //debugger;
       return {
         key: coin.id,
         name: coin.name,
         ticker: coin.symbol,
         balance: 0,
-        price: formatPrice( coin.quotes["USD"].price )
+        price: formatPrice( coin.quotes["USD"].price ),
+        change: parseFloat(0)
       };
     });
 
@@ -90,6 +92,7 @@ const handleRefresh = async (valueChangeId) => {
     let newValues = {...values};
     //debugger;
     if (values.key === valueChangeId) {
+      newValues.change = newPrice - newValues.price;
       newValues.price = newPrice;
     };
   
@@ -111,8 +114,15 @@ const API_BASE_URL = 'https://api.coinpaprika.com/v1';
     // and updating the target coin price
     const responses = coinData.map(async values => {
       let newValues = { ...values }; // shallow copy
+      
+
         const response = await getCoinPrice(values.key);
-        newValues.price = formatPrice( response.data.quotes['USD'].price );
+        let newPrice = formatPrice( response.data.quotes['USD'].price );
+        newValues.change = newPrice - newValues.price;
+
+       console.log(newPrice, newValues.price);
+       console.log(newValues.change);
+        newValues.price = newPrice;
       return newValues;
     });
     const newCoinData = await Promise.all(responses);
@@ -154,7 +164,8 @@ const API_BASE_URL = 'https://api.coinpaprika.com/v1';
         <CoinList 
           coinData={coinData}
           handleRefresh={handleRefresh}
-          showBalance={showBalance} />
+          showBalance={showBalance}
+          isAutoRefresh={isAutoRefresh}  />
       </>
     );
   }

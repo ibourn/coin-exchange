@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Coin from '../Coins/Coin';
+import { UserContext } from "../UserContext/UserContext";
 import styled from 'styled-components';
 
 
@@ -10,6 +11,8 @@ const Table = styled.table`
     `;
 
 export default function CoinList(props) {
+  const { isAuth, setIsAuth } = useContext(UserContext);
+
   return (
     <Table>
       <thead>
@@ -18,12 +21,13 @@ export default function CoinList(props) {
           <th>Ticker</th>
           {props.showBalance ? <th>Balance</th> : null}
           <th>Price</th>
-          <th>Action</th>
+          {!props.isAutoRefresh ? <th>Refresh</th> : null}
+          {isAuth ? <th>Action</th> : null}
         </tr>
       </thead>
       <tbody>
         {
-          props.coinData.map(({ key, name, ticker, balance, price }) =>
+          props.coinData.map(({ key, name, ticker, balance, price, change }) =>
             <Coin
               key={key}
               id={key}
@@ -33,6 +37,8 @@ export default function CoinList(props) {
               showBalance={props.showBalance}
               balance={balance}
               price={price}
+              change={change}
+          isAutoRefresh={props.isAutoRefresh}
             />
           )
         }

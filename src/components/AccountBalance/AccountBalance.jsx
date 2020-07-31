@@ -32,7 +32,7 @@ const Button = styled.button`
 export default function AccountBalance(props) {
 
     const buttonBalanceText = props.showBalance ? 'Hide Balance' : 'Show Balance';
-    const buttonRefreshText = props.isAutoRefresh ? 'Auto refresh' : 'Lazy refresh';
+    const buttonRefreshText = props.isAutoRefresh ? 'Lazy refresh' : 'Auto refresh';
 
     const toggleBalance = props.showBalance ?
         <span><strong>Balance : </strong>$ {props.amount}</span> : null;
