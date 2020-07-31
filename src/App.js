@@ -1,19 +1,15 @@
-import React, {useState, useEffect} from 'react';
-import ExchangeHeader from './components/ExchangeHeader/ExchangeHeader';
-import CoinList from './components/CoinList/CoinList';
-import AccountBalance from './components/AccountBalance/AccountBalance';
-import NavBar from './components/NavBar/NavBar';
-import styled from 'styled-components';
-import axios from 'axios';
-//import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useState } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { UserContext } from "./components/UserContext/UserContext";
+import ExchangeHeader from './components/ExchangeHeader/ExchangeHeader';
+import NavBar from './components/NavBar/NavBar';
+import AuthRoute from './components/AuthRoute/AuthRoute';
 import Home from './pages/Home';
 import About from './pages/About';
 import Profile from './pages/Profile';
 import SignUp from './pages/SignUp';
 import NotFound from './pages/NotFound';
-import AuthRoute from './components/AuthRoute/AuthRoute';
-import { UserContext } from "./components/UserContext/UserContext";
+import styled from 'styled-components';
 import 'bootswatch/dist/flatly/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/js/all';
 

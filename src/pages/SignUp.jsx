@@ -2,16 +2,20 @@ import React from 'react';
 
 import styled from 'styled-components';
 
+const DivSignUp = styled.div`
+  height: 77vh;
+  padding-top: 10%;
 
+`;
 
 export default function SignUp(props) {
     return (
-        <div>
-        <h1 className="">This is SignUp Page</h1>
+        <DivSignUp>
+        <h1 className="">This is the SignUp Page</h1>
         <p>
-          User is not login. If he can't, i need to signup to access profile page
+        Either the user wants to sign up or he has been redirected from the profile page because he is not logged in.
         </p>
-      </div>
+      </DivSignUp>
     );
 
 }

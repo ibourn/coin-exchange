@@ -1,7 +1,6 @@
-import React, {Component, useContext} from "react";
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import React, { useContext } from "react";
+import { Redirect, Route } from 'react-router-dom';
 
-import { Redirect } from "react-router-dom";
 import { UserContext } from "../UserContext/UserContext";
 
 const AuthRoute = ({

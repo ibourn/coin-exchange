@@ -1,6 +1,5 @@
 
 import React, {useState, useEffect, useContext} from 'react';
-import ExchangeHeader from '../components/ExchangeHeader/ExchangeHeader';
 import CoinList from '../components/CoinList/CoinList';
 import AccountBalance from '../components/AccountBalance/AccountBalance';
 import { UserContext } from "../components/UserContext/UserContext";
@@ -77,7 +76,7 @@ const handleRefresh = async (valueChangeId) => {
   const newPrice = formatPrice( response.data.quotes["USD"].price );
   const newCoinData = coinData.map( function( values ) {
     let newValues = {...values};
-    debugger;
+    //debugger;
     if (values.key === valueChangeId) {
       newValues.price = newPrice;
     };

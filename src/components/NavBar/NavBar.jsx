@@ -3,12 +3,52 @@ import { NavLink, withRouter } from "react-router-dom";
 import { UserContext } from "../UserContext/UserContext";
 import styled from 'styled-components';
 
+const Nav = styled.nav`
+padding: 0;
+    `;
 
-//style navalink et : 
+
+const DivContainer = styled.div`
+    background-color: #282c34;
+    min-height: 35px;/* 100vh;*/
+    min-width: 100vw;    
+  `;
+
+  const ButtonLogIn = styled.button`
+    background-color: #61dafb;
+    color: #00000;
+    height: 25px;
+    width: 60px;
+    padding: 0;
+    :hover {
+      font-weight: bold;
+    }
+  `;
+
+  const ButtonLogOut = styled.button`
+  background-color: #282c34;
+  color: #61dafb;
+  border: 1px solid #61dafb;
+  height: 25px;
+  width: 60px;
+  padding: 0;
+  :hover {
+    color: #c2f0fc;
+  }
+`;
+
+const SpanToggler = styled.span`
+  texDecorationColor: #61dafb;
+`;
+ 
+const linkStyle = {
+  color: "#61dafb"
+
+}
 const activeLink = {
-  color: "black",
-  backgroundColor: "DodgerBlue",
-  fontFamily: "Arial"
+  color: "white",
+  fontWeight: "bold",
+  textDecoration: "underline #61dafb"
 };
 
 const NavBar = ({ history }) => {
@@ -35,42 +75,40 @@ const NavBar = ({ history }) => {
 
   return (
    
-    <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top" role="navigation"
+    <Nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top" role="navigation"
       aria-label="main navigation">
-        <div className="container">
-      <a className="navbar-brand" href="/about">
-          Home/brand
-      </a>
+        <DivContainer className="container">
+      <span></span>
       <button className= {`${classTrigger}`} onClick={() => setOpen(!isOpen)} type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span className="navbar-toggler-icon"></span>
+        <SpanToggler className="navbar-toggler-icon"></SpanToggler>
       </button>
 
       <div className={`${classTarget}`} id="navbarContent">
 
-      <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-            <NavLink to="/" exact className="navbar-link" activeStyle={activeLink} >
+      <ul className="navbar-nav mr-auto">
+      <li className="nav-item mr-3">
+            <NavLink to="/" exact className="navbar-link" style={linkStyle} activeStyle={activeLink} >
               Home
             </NavLink>
       </li>
-      <li class="nav-item">
+      <li className="nav-item mr-3">
             <NavLink
              to="/about" exact
-              className="navbar-link" activeStyle={activeLink}
+              className="navbar-link" style={linkStyle} activeStyle={activeLink}
             >
               About
             </NavLink>
             </li>
-      <li class="nav-item">
+      <li className="nav-item mr-3">
             <NavLink to="/profile" exact
-              className="navbar-link" activeStyle={activeLink}
+              className="navbar-link" style={linkStyle} activeStyle={activeLink}
             >
               Profile
             </NavLink>
             </li>
-            <li class="nav-item">
+            <li className="nav-item mr-3">
             <NavLink to="/signup" exact
-              className="navbar-link" activeStyle={activeLink}
+              className="navbar-link" style={linkStyle} activeStyle={activeLink}
             >
               Sign Up
             </NavLink>
@@ -80,13 +118,13 @@ const NavBar = ({ history }) => {
             <div className="navbar-item">
               <div className="buttons">
                 {!isAuth ? (
-                  <button className="button is-white" onClick={loginUser}>
+                  <ButtonLogIn className="btn" onClick={loginUser}>
                     Log in
-                  </button>
+                  </ButtonLogIn>
                 ) : (
-                  <button className="button is-black" onClick={logoutUser}>
+                  <ButtonLogOut className="btn" onClick={logoutUser}>
                     Log out
-                  </button>
+                  </ButtonLogOut>
                 )}
               </div>
             {/* </div> */}
@@ -94,8 +132,8 @@ const NavBar = ({ history }) => {
          
 
       </div>
-      </div>
-    </nav>
+      </DivContainer>
+    </Nav>
   );
 
 }
