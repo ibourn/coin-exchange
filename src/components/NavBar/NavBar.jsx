@@ -4,6 +4,12 @@ import { NavLink, withRouter } from "react-router-dom";
 import styled from 'styled-components';
 
 
+//style navalink et : 
+const activeLink = {
+  color: "black",
+  backgroundColor: "DodgerBlue",
+  fontFamily: "Arial"
+};
 
 const NavBar = ({ history }) => {
   //state to fix the problem with bootstrap js about changing the class
@@ -41,26 +47,29 @@ const NavBar = ({ history }) => {
 
       <div className={`${classTarget}`} id="navbarContent">
 
-         
-            <NavLink className="navbar-item" activeClassName="is-active" to="/">
+      <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+            <NavLink to="/" exact className="navbar-link" activeStyle={activeLink} >
               Home
             </NavLink>
-      
+      </li>
+      <li class="nav-item">
             <NavLink
-              className="navbar-item" activeClassName="is-active"
-              to="/about"
+             to="/about" exact
+              className="navbar-link" activeStyle={activeLink}
             >
               About
             </NavLink>
-        
-            <NavLink
-              className="navbar-item" activeClassName="is-active"
-              to="/profile"
+            </li>
+      <li class="nav-item">
+            <NavLink to="/profile" exact
+              className="navbar-link" activeStyle={activeLink}
             >
               Profile
             </NavLink>
-         
-           <div className="navbar">
+            </li>
+            </ul>
+           {/* <div className="navbar"> */}
             <div className="navbar-item">
               <div className="buttons">
                 {!isAuth ? (
@@ -73,7 +82,7 @@ const NavBar = ({ history }) => {
                   </button>
                 )}
               </div>
-            </div>
+            {/* </div> */}
           </div>
          
 

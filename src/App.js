@@ -30,15 +30,16 @@ function App(props) {
       
       <div className="container mt-2" style={{ marginTop: 40 }}>
         <Switch>
-          <Route exact path="/">
+        <Route exact strict path="/">
             <Home />
           </Route>
-          <Route path="/about">
+          <Route exact strict path="/about">
             <About />
           </Route>
-          <Route path="/profile:name">
-            <About />
+          <Route exact strict path="/profile:name">
+            <Profile />
           </Route>
+          <Route  path="*" component={ () => "404 : not found"}/>     
         </Switch>
       </div>
       
