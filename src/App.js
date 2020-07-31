@@ -10,6 +10,8 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
 import Profile from './pages/Profile';
+import AuthRoute from './components/AuthRoute/AuthRoute';
+import { UserContext } from "./components/UserContext/UserContext";
 import 'bootswatch/dist/flatly/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/js/all';
 
@@ -21,27 +23,28 @@ const DivApp = styled.div`
     `;
 
 function App(props) {
+  const [isAuth, setIsAuth] = useState(false);
+
 
   return (
     <DivApp>
       <BrowserRouter>
       <ExchangeHeader />
+      <UserContext.Provider value={{ isAuth, setIsAuth }} >
       <NavBar />
       
       <div className="container mt-2" style={{ marginTop: 40 }}>
         <Switch>
-        <Route exact strict path="/">
-            <Home />
-          </Route>
-          <Route exact strict path="/about">
-            <About />
-          </Route>
-          <Route exact strict path="/profile:name">
-            <Profile />
-          </Route>
+        <Route exact strict path="/" component={ Home } />
+  
+          <Route exact strict path="/about" component={ About } />
+    
+          <AuthRoute  component={ Profile } />
+
           <Route  path="*" component={ () => "404 : not found"}/>     
         </Switch>
       </div>
+      </UserContext.Provider>
       
     </BrowserRouter>
     

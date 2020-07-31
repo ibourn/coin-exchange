@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { NavLink, withRouter } from "react-router-dom";
-
+import { UserContext } from "../UserContext/UserContext";
 import styled from 'styled-components';
 
 
@@ -18,16 +18,18 @@ const NavBar = ({ history }) => {
   const classTarget = isOpen ? 'collapse navbar-collapse' : 'collapse navbar-collapse show';
   const classTrigger = isOpen ? 'navbar-toggler navbar-toggler-right collapsed' : 'navbar-toggler navbar-toggler-right';
 
+  const { isAuth, setIsAuth } = useContext(UserContext);
 
-  const isAuth = !!localStorage.getItem("token");
+  //const isAuth = !!localStorage.getItem("token");
 
   const loginUser = () => {
-    localStorage.setItem("token", "some-login-token");
+    setIsAuth(true);
+    //localStorage.setItem("token", "some-login-token");
     history.push("/profile/Vijit");
   };
 
   const logoutUser = () => {
-    localStorage.removeItem("token");
+    setIsAuth(false);    //localStorage.removeItem("token");
     history.push("/");
   };
 

@@ -1,8 +1,11 @@
 
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import ExchangeHeader from '../components/ExchangeHeader/ExchangeHeader';
 import CoinList from '../components/CoinList/CoinList';
 import AccountBalance from '../components/AccountBalance/AccountBalance';
+import { UserContext } from "../components/UserContext/UserContext";
+
+
 import styled from 'styled-components';
 import axios from 'axios';
 import 'bootswatch/dist/flatly/bootstrap.min.css';
@@ -17,6 +20,8 @@ const tickerUrl = 'https://api.coinpaprika.com/v1/tickers/';
 const formatPrice = price => parseFloat(Number( price ).toFixed(4));
 
 function Home(props) {
+  const { isAuth, setIsAuth } = useContext(UserContext);
+
 
   const [balance, setBalance] = useState(10000);
   const [showBalance, setShowBalance] = useState(true);
@@ -97,6 +102,7 @@ const handleRefresh = async (valueChangeId) => {
   
     return (
       <>
+      <p>`${isAuth + "ae"}`</p>
          <AccountBalance 
           amount={balance}
           handleToggleBalance={handleToggleBalance} 

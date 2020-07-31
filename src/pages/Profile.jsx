@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from "react-router-dom";
-import WithAuth from "../components/WithAuth/WithAuth";
+import WithAuth from "../components/AuthRoute/AuthRoute";
 
 
 import styled from 'styled-components';
@@ -32,4 +32,4 @@ const Profile = () => {
 
 }
 
-export default WithAuth(Profile);
+export default (Profile);
