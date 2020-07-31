@@ -36,13 +36,14 @@ export default function Coin(props) {
         props.handleRefresh(props.id);
     }
 
+    const priceStyle = props.change >= 0 ? {color: "green"} : {color: "red"};
     //plus de render ds fonction mais toujours return statement qui passe en top level
     return (
         <tr>
             <Td>{props.name}</Td>
             <Td>{props.ticker}</Td>
             {props.showBalance ? <Td>{props.balance}</Td> : null}
-            <Td>${props.price}</Td>
+            <Td style={priceStyle}>${props.price}</Td>
             <Td>
                 <form action="">
                     <Button onClick={handleClick}>Refresh</Button>

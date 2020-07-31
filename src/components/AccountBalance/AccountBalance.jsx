@@ -31,7 +31,8 @@ const Button = styled.button`
 
 export default function AccountBalance(props) {
 
-    const buttonText = props.showBalance ? 'Hide Balance' : 'Show Balance';
+    const buttonBalanceText = props.showBalance ? 'Hide Balance' : 'Show Balance';
+    const buttonRefreshText = props.isAutoRefresh ? 'Auto refresh' : 'Lazy refresh';
 
     const toggleBalance = props.showBalance ?
         <span><strong>Balance : </strong>$ {props.amount}</span> : null;
@@ -40,7 +41,8 @@ export default function AccountBalance(props) {
     return (
         <Section className="balance">
             {toggleBalance}
-            <Button onClick={props.handleToggleBalance}>{buttonText}</Button>
+            <Button onClick={props.handleAutoRefresh}>{buttonRefreshText}</Button>
+            <Button onClick={props.handleToggleBalance}>{buttonBalanceText}</Button>
         </Section>
     );
 }

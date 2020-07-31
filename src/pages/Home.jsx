@@ -25,6 +25,7 @@ function Home(props) {
   const [balance, setBalance] = useState(10000);
   const [showBalance, setShowBalance] = useState(true);
   const [coinData, setCoinData] = useState([]);
+  const [isAutoRefresh, setIsAutoRefresh] = useState(false);
  
   /* possible mais piégeux : ne pas oublier on manipule un objet entier
   const [state, setState] = useSetSate({
@@ -40,8 +41,19 @@ useEffect(function() {
     
   } else {
     //component did update
+    
   }
-
+  let interval = null;
+  if (isAutoRefresh) {
+    interval = setInterval(() => {
+      autoRefresh();
+      console.log("je refresh");
+    }, 20000);
+  } else if (!isAutoRefresh ) {
+    console.log("je stop le refresh");
+    clearInterval(interval);
+  }
+  return () => clearInterval(interval);
 });
 
 
@@ -88,6 +100,37 @@ const handleRefresh = async (valueChangeId) => {
 }
 
 
+const API_BASE_URL = 'https://api.coinpaprika.com/v1';
+
+  const getCoinPrice = (id) => {
+    return axios.get(`${tickerUrl}${id}`);
+  }
+
+  const autoRefresh = async () => {
+    // generate the new state by cloning the old state
+    // and updating the target coin price
+    const responses = coinData.map(async values => {
+      let newValues = { ...values }; // shallow copy
+        const response = await getCoinPrice(values.key);
+        newValues.price = formatPrice( response.data.quotes['USD'].price );
+      return newValues;
+    });
+    const newCoinData = await Promise.all(responses);
+
+    setCoinData(newCoinData);
+  }
+
+
+  const handleAutoRefresh = () => {
+    /* this.setState( function(oldState) {
+       return {
+         ...oldState,
+         showBalance: !oldState.showBalance 
+       };
+     });*/
+     setIsAutoRefresh(oldValue => !oldValue);
+   }
+
   const handleToggleBalance = () => {
    /* this.setState( function(oldState) {
       return {
@@ -105,7 +148,9 @@ const handleRefresh = async (valueChangeId) => {
          <AccountBalance 
           amount={balance}
           handleToggleBalance={handleToggleBalance} 
-          showBalance={showBalance} />
+          handleAutoRefresh={handleAutoRefresh}
+          showBalance={showBalance}
+          isAutoRefresh={isAutoRefresh} />
         <CoinList 
           coinData={coinData}
           handleRefresh={handleRefresh}
