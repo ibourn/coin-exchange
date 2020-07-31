@@ -7,7 +7,15 @@ import styled, { keyframes } from 'styled-components';
  
 const Td = styled.td`
     border: 1px solid #cccccc;
-    width: 25vh;
+    width: 14vw;
+`;//25 22
+
+const TdControls = styled(Td)`
+width: 34vw;
+`;
+
+const TdName = styled(Td)`
+width: 24vw;
 `;
 
 const Button = styled.button`
@@ -43,16 +51,24 @@ const blinkingRed = keyframes`
 
  const TdGreen = styled.td`
  border: 1px solid #cccccc;
-    width: 25vh;
+    width: 16vw;
  color: #abfcb6;
 animation: ${blinkingGreen} ease-in-out 2s 5;
 `;
 const TdRed = styled.td`
 border: 1px solid #cccccc;
-    width: 25vh;
+    width: 16vw;
 color: #fc99ad;
 animation: ${blinkingRed} ease-in-out 2s 5;
 `;
+
+const ButtonX = styled.button`
+ font-size: 11px;
+ width: 64px;
+ margin: 3px 5px 0;
+
+`;//pour refresh
+// className= 'btn btn-info'
 
 //based class component => functionnal component
 export default function Coin(props) {
@@ -60,30 +76,49 @@ export default function Coin(props) {
     const { isAuth, setIsAuth } = useContext(UserContext);
 
 
-    const handleClick = (event) => {
+    const handleRefresh = (event) => {
         // Prevent the default action of submitting the form
         event.preventDefault();
 
         props.handleRefresh(props.id);
     }
 
+    const handleBuy = (event) => {
+        // Prevent the default action of submitting the form
+        event.preventDefault();
+
+        props.handleTransaction(true, props.id);
+    }
+
+    const handleSell = (event) => {
+        // Prevent the default action of submitting the form
+        event.preventDefault();
+
+        props.handleTransaction(false, props.id);
+    }
 
     console.log(props.change);
     //plus de render ds fonction mais toujours return statement qui passe en top level
     return (
         <tr>
-            <Td>{props.name}</Td>
+            <TdName>{props.name}</TdName>
             <Td>{props.ticker}</Td>
-            {props.showBalance ? <Td>{props.balance}</Td> : null}
+            <Td>{props.showBalance ? props.balance : '-'} </Td>
             {props.change == 0 ? <Td>{props.price}</Td> : props.change > 0 ?
             <TdGreen>${props.price}</TdGreen> : <TdRed>${props.price}</TdRed>}
         
             {!props.isAutoRefresh ?  <Td>
                 <form action="">
-                    <Button onClick={handleClick}>Lazy</Button>
+                    <Button onClick={handleRefresh}>Lazy</Button>
                 </form>
             </Td> : null}
-            {isAuth ? <Td>action</Td> : null}
+            {isAuth ? <TdControls>
+                <form action="">
+                    <Button className="btn btn-success" onClick={handleBuy}>Buy</Button>
+                    <Button className="btn btn-danger" onClick={handleSell}>Sell</Button>
+                </form>
+
+            </TdControls> : null}
         </tr>
     ); 
 

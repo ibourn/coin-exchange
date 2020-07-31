@@ -11,7 +11,7 @@ padding: 0;
 const DivContainer = styled.div`
     background-color: #282c34;
     min-height: 35px;/* 100vh;*/
-    min-width: 100vw;    
+    min-width: 100%;    
   `;
 
   const ButtonLogIn = styled.button`

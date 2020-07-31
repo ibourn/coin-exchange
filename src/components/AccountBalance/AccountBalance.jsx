@@ -12,6 +12,18 @@ const Section = styled.section`
     text-align: left;
 `;
 
+/*
+const Section =  styled.section`
+    /*border: 1px solid red;*//*
+    
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom 2rem;
+    line-height: 3rem;
+    display: inline-block;
+`;
+*/
+
 const Button = styled.button`
     margin: 10px auto 0 auto;
     float: right;
@@ -29,21 +41,54 @@ const Button = styled.button`
     }
 `;
 
+const ButtonHelicopter = styled.button`
+margin: 0 8px;
+`;
+
+const ButtonToggleBalance = styled(ButtonHelicopter)`
+width: 150px;
+`;
+
+const Balance = styled.div`
+min-width: 250px;
+margin: 0.5rem 0 0 2.5rem;
+font-size: 1.5em;
+vertical-align: middle;
+text-align: left;
+`;
+
+var formatter = Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD'
+});
+
 export default function AccountBalance(props) {
 
     const buttonBalanceText = props.showBalance ? 'Hide Balance' : 'Show Balance';
     const buttonRefreshText = props.isAutoRefresh ? 'Lazy refresh' : 'Auto refresh';
 
-    const toggleBalance = props.showBalance ?
-        <span><strong>Balance : </strong>$ {props.amount}</span> : null;
+   // const toggleBalance = props.showBalance ?
+     //   <span><strong>Balance : </strong>$ {props.amount}</span> : null;
+    let content = '\u00A0';
+    if(props.showBalance) {
+       content = <span><strong>Balance : </strong> { formatter. format(props.amount)}</span>;
+    }
 
 
+    // btnClass = 'btn' + (props.showBalance ? 'btn-warning' : 'btn-info');
     return (
+        <>
+        <Balance>{content}</Balance>
         <Section className="balance">
-            {toggleBalance}
+            
             <Button onClick={props.handleAutoRefresh}>{buttonRefreshText}</Button>
             <Button onClick={props.handleToggleBalance}>{buttonBalanceText}</Button>
+            <ButtonHelicopter className="btn btn-success"
+            onClick={props.handleBrrrr}>
+            <i className="fas fa-helicopter"></i>
+            </ButtonHelicopter>
         </Section>
+        </>
     );
 }
 

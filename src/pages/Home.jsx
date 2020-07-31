@@ -151,19 +151,39 @@ const API_BASE_URL = 'https://api.coinpaprika.com/v1';
     setShowBalance(oldValue => !oldValue);
   }
 
+  const handleBrrrr = () => {
+    setBalance( oldBalance => oldBalance + 1200);
+  }
   
+  const handleTransaction = (isBuy, valueChangeId) => {
+    var balanceChange = isBuy ? 1 : -1;
+    const newCoinData = coinData.map( function(values) {
+      let newValues = {...values};
+      if ( valueChangeId == values.key) {
+        newValues.balance += balanceChange;
+        setBalance( oldBalance => oldBalance - balanceChange * newValues.price);
+
+      }
+      return newValues;
+    })
+
+    setCoinData( newCoinData );
+  }
+
+
     return (
       <>
-      <p>`${isAuth + "ae"}`</p>
          <AccountBalance 
           amount={balance}
           handleToggleBalance={handleToggleBalance} 
           handleAutoRefresh={handleAutoRefresh}
+          handleBrrrr={handleBrrrr}
           showBalance={showBalance}
           isAutoRefresh={isAutoRefresh} />
         <CoinList 
           coinData={coinData}
           handleRefresh={handleRefresh}
+          handleTransaction={handleTransaction}
           showBalance={showBalance}
           isAutoRefresh={isAutoRefresh}  />
       </>
