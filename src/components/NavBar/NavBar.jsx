@@ -25,12 +25,10 @@ const NavBar = ({ history }) => {
   const loginUser = () => {
     setIsAuth(true);
     //localStorage.setItem("token", "some-login-token");
-    history.push("/profile/Vijit");
   };
 
   const logoutUser = () => {
     setIsAuth(false);    //localStorage.removeItem("token");
-    history.push("/");
   };
 
 
@@ -68,6 +66,13 @@ const NavBar = ({ history }) => {
               className="navbar-link" activeStyle={activeLink}
             >
               Profile
+            </NavLink>
+            </li>
+            <li class="nav-item">
+            <NavLink to="/signup" exact
+              className="navbar-link" activeStyle={activeLink}
+            >
+              Sign Up
             </NavLink>
             </li>
             </ul>

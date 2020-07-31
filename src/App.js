@@ -10,6 +10,8 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
 import Profile from './pages/Profile';
+import SignUp from './pages/SignUp';
+import NotFound from './pages/NotFound';
 import AuthRoute from './components/AuthRoute/AuthRoute';
 import { UserContext } from "./components/UserContext/UserContext";
 import 'bootswatch/dist/flatly/bootstrap.min.css';
@@ -21,6 +23,8 @@ const DivApp = styled.div`
     background-color: rgb(20, 56, 97);
     color: #cccccc;
     `;
+
+
 
 function App(props) {
   const [isAuth, setIsAuth] = useState(false);
@@ -39,9 +43,10 @@ function App(props) {
   
           <Route exact strict path="/about" component={ About } />
     
-          <AuthRoute  component={ Profile } />
+          <AuthRoute exact path="/profile" component={ Profile } />
 
-          <Route  path="*" component={ () => "404 : not found"}/>     
+          <Route exact strict path="/signup" component={ SignUp } />
+          <Route  path="*" component={ NotFound }/>     
         </Switch>
       </div>
       </UserContext.Provider>
