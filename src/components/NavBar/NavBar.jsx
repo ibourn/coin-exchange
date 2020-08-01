@@ -78,7 +78,10 @@ const NavBar = ({ history }) => {
     <Nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top" role="navigation"
       aria-label="main navigation">
         <DivContainer className="container">
+      
       <span></span>
+      
+   
       <button className= {`${classTrigger}`} onClick={() => setOpen(!isOpen)} type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
         <SpanToggler className="navbar-toggler-icon"></SpanToggler>
       </button>

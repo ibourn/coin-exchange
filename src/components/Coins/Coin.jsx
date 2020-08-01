@@ -17,30 +17,16 @@ const Td = styled.td`
 `;//25 22
 
 const TdControls = styled(Td)`
-width: 34vw;
+width: 20vw;
 `;
 
 const TdName = styled(Td)`
 width: 24vw;
 `;
 
-const Button = styled.button`
-    height: 2rem;
-    width: 100%;
-    background-color: #282c34;
-    color: #61dafb;
-    border: none;
-    font-size: 1rem;
-    :active {
-        background: #0053ba;
-    }
-    :hover {
-        border: 1px solid #cccccc;
-        border-radius: 3px;
-        cursor: pointer;
-    }
-`;
-
+const LinkStyle = {
+    color: "#61dafb"
+};
 
 const blinkingGreen = keyframes` 
 0%{     background-color: #282c34;    }
@@ -72,8 +58,14 @@ const ButtonX = styled.button`
  font-size: 11px;
  width: 64px;
  margin: 3px 5px 0;
+`;
 
-`;//pour refresh
+const ButtonRefresh = styled.button`
+font-size: 11px;
+width: 64px;
+margin: 3px 5px 0;
+`;
+//pour refresh
 // className= 'btn btn-info'
 
 //based class component => functionnal component
@@ -109,7 +101,7 @@ export default function Coin(props) {
         <>
         <tr>
         <TdName>
-            <Link to={`Coin/${props.id}`}>
+            <Link style={LinkStyle} to={`Coin/${props.id}`}>
            {props.name}
             </Link>
             </TdName>
@@ -120,13 +112,13 @@ export default function Coin(props) {
         
             {!props.isAutoRefresh ?  <Td>
                 <form action="">
-                    <Button onClick={handleRefresh}>Lazy</Button>
+                    <ButtonRefresh className="btn btn-info" onClick={handleRefresh}>Lazy</ButtonRefresh>
                 </form>
             </Td> : null}
             {isAuth ? <TdControls>
                 <form action="">
-                    <Button className="btn btn-success" onClick={handleBuy}>Buy</Button>
-                    <Button className="btn btn-danger" onClick={handleSell}>Sell</Button>
+                    <ButtonX className="btn btn-success" onClick={handleBuy}>Buy</ButtonX>
+                    <ButtonX className="btn btn-danger" onClick={handleSell}>Sell</ButtonX>
                 </form>
 
             </TdControls> : null}

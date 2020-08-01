@@ -16,7 +16,7 @@ const Profile = () => {
       <h1 className="title">This is the Profile Page</h1>
       <article>
         
-          <p>The user is logged in.</p>
+          <p>The user is logged in. You can have acces to balance, buy and sell. </p>
         
         <div className="">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.{" "}

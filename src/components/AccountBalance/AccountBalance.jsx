@@ -10,6 +10,9 @@ const Section = styled.section`
     max-width: 780px;
     font-size: 2rem;
     text-align: left;
+
+    vertical-align: middle;
+text-align: center;
 `;
 
 /*
@@ -42,7 +45,7 @@ const Button = styled.button`
 `;
 
 const ButtonHelicopter = styled.button`
-margin: 0 8px;
+margin-left: 8px;
 `;
 
 const ButtonToggleBalance = styled(ButtonHelicopter)`
@@ -54,7 +57,7 @@ min-width: 250px;
 margin: 0.5rem 0 0 2.5rem;
 font-size: 1.5em;
 vertical-align: middle;
-text-align: left;
+text-align: center;
 `;
 
 var formatter = Intl.NumberFormat('en-US', {
@@ -75,14 +78,13 @@ export default function AccountBalance(props) {
     }
 
 
-    // btnClass = 'btn' + (props.showBalance ? 'btn-warning' : 'btn-info');
+    const btnBalanceClass = 'btn ' + (props.showBalance ? 'btn-warning' : 'btn-info');
     return (
         <>
         <Balance>{content}</Balance>
         <Section className="balance">
-            
-            <Button onClick={props.handleAutoRefresh}>{buttonRefreshText}</Button>
-            <Button onClick={props.handleToggleBalance}>{buttonBalanceText}</Button>
+        <button className='btn btn-info' onClick={props.handleAutoRefresh}>{buttonRefreshText}</button>
+            <ButtonToggleBalance className={btnBalanceClass} onClick={props.handleToggleBalance}>{buttonBalanceText}</ButtonToggleBalance>
             <ButtonHelicopter className="btn btn-success"
             onClick={props.handleBrrrr}>
             <i className="fas fa-helicopter"></i>

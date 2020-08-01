@@ -5,8 +5,21 @@ import styled from 'styled-components';
 
 const DivCoin = styled.div`
   min-height: 77vh;
-  padding-top: 10%;
 
+`;
+
+const Hcoin = styled.h2`
+font-size: 2rem;
+margin-bottom: 20px;
+`;
+
+const LiCoin = styled.li`
+  text-align: left;
+    margin-bottom: 5px;
+    list-style-type: circle;
+    a {
+        color: white;
+    }
 `;
 
 const coinBaseUrl = 'https://api.coinpaprika.com/v1/coins/';
@@ -36,12 +49,12 @@ const CoinPage = ({ match }) => {
 
     return (
       <DivCoin>
-      <h1 className="title">20 last tweets about : {match.params.id}</h1>
+      <Hcoin className="title">20 last tweets about : {match.params.id}</Hcoin>
       <article>
         <ul>
            {
           tweets.map((tweet, index) =>
-              <li key={index}> <a href={tweet.link}> {tweet.status}</a></li>
+              <LiCoin key={index}> <a href={tweet.link}> {tweet.status}</a></LiCoin>
              
           )
         }
