@@ -33,7 +33,7 @@ export default function About(props) {
 
         <ul>Extra learning:
           <Li>Hook : useContext</Li>
-          <Li>Router, Switch, Navlink</Li>
+          <Li>Router, Switch, Navlink, Redirect, nested routes</Li>
           </ul>
 
           <p> 

@@ -4,6 +4,12 @@ import { UserContext } from "../UserContext/UserContext";
 
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
+
+import { Route, Link } from 'react-router-dom'
+
+
+const CoinPage = ({ match }) => <p>{match.params.id}</p>;
+
  
 const Td = styled.td`
     border: 1px solid #cccccc;
@@ -100,8 +106,11 @@ export default function Coin(props) {
     console.log(props.change);
     //plus de render ds fonction mais toujours return statement qui passe en top level
     return (
+        <>
         <tr>
+            <Link to={`Coin/${props.name}`}>
             <TdName>{props.name}</TdName>
+            </Link>
             <Td>{props.ticker}</Td>
             <Td>{props.showBalance ? props.balance : '-'} </Td>
             {props.change == 0 ? <Td>{props.price}</Td> : props.change > 0 ?
@@ -120,6 +129,8 @@ export default function Coin(props) {
 
             </TdControls> : null}
         </tr>
+                    <Route path="/Coin/:id" component={CoinPage} />
+</>
     ); 
 
 

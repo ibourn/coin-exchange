@@ -4,6 +4,7 @@ import { UserContext } from "../UserContext/UserContext";
 import styled from 'styled-components';
 
 
+
 /*const Table = styled.table`
     margin: 50px auto 50px auto;
     display: inline-block;
@@ -33,7 +34,7 @@ export default function CoinList(props) {
       <tbody>
         {
           props.coinData.map(({ key, name, ticker, balance, price, change }) =>
-            <Coin
+              <Coin
               key={key}
               id={key}
               name={name}

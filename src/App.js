@@ -13,6 +13,9 @@ import styled from 'styled-components';
 import 'bootswatch/dist/flatly/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/js/all';
 
+const CoinPage = ({ match }) => <p>{match.params.id}</p>;
+
+
 
 const DivApp = styled.div`
     text-align: center;
@@ -37,11 +40,12 @@ function App(props) {
         <Switch>
         <Route exact strict path="/" component={ Home } />
   
-          <Route exact strict path="/about" component={ About } />
+          <Route exact path="/about" component={ About } />
     
           <AuthRoute exact path="/profile" component={ Profile } />
 
-          <Route exact strict path="/signup" component={ SignUp } />
+          <Route exact path="/signup" component={ SignUp } />
+          <Route exact path="/coin/:id" component={ CoinPage } />
           <Route  path="*" component={ NotFound }/>     
         </Switch>
       </div>
