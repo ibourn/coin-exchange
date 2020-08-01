@@ -108,9 +108,11 @@ export default function Coin(props) {
     return (
         <>
         <tr>
-            <Link to={`Coin/${props.name}`}>
-            <TdName>{props.name}</TdName>
+        <TdName>
+            <Link to={`Coin/${props.id}`}>
+           {props.name}
             </Link>
+            </TdName>
             <Td>{props.ticker}</Td>
             <Td>{props.showBalance ? props.balance : '-'} </Td>
             {props.change == 0 ? <Td>{props.price}</Td> : props.change > 0 ?

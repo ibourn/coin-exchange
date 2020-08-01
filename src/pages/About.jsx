@@ -26,7 +26,7 @@ export default function About(props) {
           <Li>Development environment for React</Li>
           <Li>Class based and functional Components</Li>
           <Li>Hooks : useState and useEffect</Li>
-          <Li>Api communication using axios</Li>
+          <Li>Api communication using axios and coinpaprika.com</Li>
           <Li>Theming with bootstrap and styled components</Li>
           <Li>Git and Github usage</Li>
         </ul>

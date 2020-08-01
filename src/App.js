@@ -9,11 +9,11 @@ import About from './pages/About';
 import Profile from './pages/Profile';
 import SignUp from './pages/SignUp';
 import NotFound from './pages/NotFound';
+import CoinPage from './pages/CoinPage';
 import styled from 'styled-components';
 import 'bootswatch/dist/flatly/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/js/all';
 
-const CoinPage = ({ match }) => <p>{match.params.id}</p>;
 
 
 
