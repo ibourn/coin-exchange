@@ -15,14 +15,11 @@ import 'bootswatch/dist/flatly/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/js/all';
 
 
-
-
 const DivApp = styled.div`
     text-align: center;
     background-color: rgb(20, 56, 97);
     color: #cccccc;
     `;
-
 
 
 function App(props) {
@@ -32,30 +29,27 @@ function App(props) {
   return (
     <DivApp>
       <BrowserRouter>
-      <ExchangeHeader />
-      <UserContext.Provider value={{ isAuth, setIsAuth }} >
-      <NavBar />
-      
-      <div className="container mt-2" style={{ marginTop: 40 }}>
-        <Switch>
-        <Route exact strict path="/" component={ Home } />
-  
-          <Route exact path="/about" component={ About } />
-    
-          <AuthRoute exact path="/profile" component={ Profile } />
+        <ExchangeHeader />
+        <UserContext.Provider value={{ isAuth, setIsAuth }} >
+          <NavBar />
 
-          <Route exact path="/signup" component={ SignUp } />
-          <Route exact path="/coin/:id" component={ CoinPage } />
-          <Route  path="*" component={ NotFound }/>     
-        </Switch>
-      </div>
-      </UserContext.Provider>
-      
-    </BrowserRouter>
-    
+          <div className="container mt-2" style={{ marginTop: 40 }}>
+            <Switch>
+              <Route exact strict path="/" component={Home} />
+              <Route exact path="/about" component={About} />
+
+              <AuthRoute exact path="/profile" component={Profile} />
+
+              <Route exact path="/signup" component={SignUp} />
+              <Route exact path="/coin/:id" component={CoinPage} />
+              <Route path="*" component={NotFound} />
+            </Switch>
+          </div>
+        </UserContext.Provider>
+      </BrowserRouter>
     </DivApp>
   );
-  }
+}
 
 
 export default App;

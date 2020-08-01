@@ -13,12 +13,12 @@ const Profile = () => {
     
     return (
       <DivProfile>
-      <h1 className="title">This is the Profile Page</h1>
+      <h1>This is the Profile Page</h1>
       <article>
         
           <p>The user is logged in. You can have acces to balance, buy and sell. </p>
         
-        <div className="">
+        <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.{" "}
           <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta
           nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida

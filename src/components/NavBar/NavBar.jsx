@@ -4,9 +4,8 @@ import { UserContext } from "../UserContext/UserContext";
 import styled from 'styled-components';
 
 const Nav = styled.nav`
-padding: 0;
+  padding: 0;
     `;
-
 
 const DivContainer = styled.div`
     background-color: #282c34;
@@ -14,7 +13,7 @@ const DivContainer = styled.div`
     min-width: 100%;    
   `;
 
-  const ButtonLogIn = styled.button`
+const ButtonLogIn = styled.button`
     background-color: #61dafb;
     color: #00000;
     height: 25px;
@@ -25,7 +24,7 @@ const DivContainer = styled.div`
     }
   `;
 
-  const ButtonLogOut = styled.button`
+const ButtonLogOut = styled.button`
   background-color: #282c34;
   color: #61dafb;
   border: 1px solid #61dafb;
@@ -40,7 +39,7 @@ const DivContainer = styled.div`
 const SpanToggler = styled.span`
   texDecorationColor: #61dafb;
 `;
- 
+
 const linkStyle = {
   color: "#61dafb"
 
@@ -52,7 +51,6 @@ const activeLink = {
 };
 
 const NavBar = ({ history }) => {
-  //state to fix the problem with bootstrap js about changing the class
   const [isOpen, setOpen] = useState(true);
 
   const classTarget = isOpen ? 'collapse navbar-collapse' : 'collapse navbar-collapse show';
@@ -60,81 +58,72 @@ const NavBar = ({ history }) => {
 
   const { isAuth, setIsAuth } = useContext(UserContext);
 
-  //const isAuth = !!localStorage.getItem("token");
-
   const loginUser = () => {
     setIsAuth(true);
-    //localStorage.setItem("token", "some-login-token");
   };
 
   const logoutUser = () => {
-    setIsAuth(false);    //localStorage.removeItem("token");
+    setIsAuth(false);
   };
 
 
-
   return (
-   
+
     <Nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top" role="navigation"
       aria-label="main navigation">
-        <DivContainer className="container">
-      
-      <span></span>
-      
-   
-      <button className= {`${classTrigger}`} onClick={() => setOpen(!isOpen)} type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-        <SpanToggler className="navbar-toggler-icon"></SpanToggler>
-      </button>
+      <DivContainer className="container">
 
-      <div className={`${classTarget}`} id="navbarContent">
+        <span></span>
 
-      <ul className="navbar-nav mr-auto">
-      <li className="nav-item mr-3">
-            <NavLink to="/" exact className="navbar-link" style={linkStyle} activeStyle={activeLink} >
-              Home
-            </NavLink>
-      </li>
-      <li className="nav-item mr-3">
-            <NavLink
-             to="/about" exact
-              className="navbar-link" style={linkStyle} activeStyle={activeLink}
-            >
-              About
-            </NavLink>
-            </li>
-      <li className="nav-item mr-3">
-            <NavLink to="/profile" exact
-              className="navbar-link" style={linkStyle} activeStyle={activeLink}
-            >
-              Profile
-            </NavLink>
+
+        <button className={`${classTrigger}`} onClick={() => setOpen(!isOpen)} type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <SpanToggler className="navbar-toggler-icon"></SpanToggler>
+        </button>
+
+        <div className={`${classTarget}`} id="navbarContent">
+
+          <ul className="navbar-nav mr-auto">
+            <li className="nav-item mr-3">
+              <NavLink to="/" exact className="navbar-link" style={linkStyle} activeStyle={activeLink} >
+                Home
+              </NavLink>
             </li>
             <li className="nav-item mr-3">
-            <NavLink to="/signup" exact
-              className="navbar-link" style={linkStyle} activeStyle={activeLink}
-            >
-              Sign Up
-            </NavLink>
+              <NavLink
+                to="/about" exact
+                className="navbar-link" style={linkStyle} activeStyle={activeLink}>
+                About
+               </NavLink>
             </li>
-            </ul>
-           {/* <div className="navbar"> */}
-            <div className="navbar-item">
-              <div className="buttons">
-                {!isAuth ? (
-                  <ButtonLogIn className="btn" onClick={loginUser}>
-                    Log in
-                  </ButtonLogIn>
-                ) : (
+            <li className="nav-item mr-3">
+              <NavLink to="/profile" exact
+                className="navbar-link" style={linkStyle} activeStyle={activeLink} >
+                Profile
+               </NavLink>
+            </li>
+            <li className="nav-item mr-3">
+              <NavLink to="/signup" exact
+                className="navbar-link" style={linkStyle} activeStyle={activeLink} >
+                Sign Up
+               </NavLink>
+            </li>
+          </ul>
+          {/* <div className="navbar"> */}
+          <div className="navbar-item">
+            <div className="buttons">
+              {!isAuth ? (
+                <ButtonLogIn className="btn" onClick={loginUser}>
+                  Log in
+                </ButtonLogIn>
+              ) : (
                   <ButtonLogOut className="btn" onClick={logoutUser}>
                     Log out
                   </ButtonLogOut>
-                )}
-              </div>
+              )}
+            </div>
             {/* </div> */}
           </div>
-         
-
-      </div>
+        </div>
       </DivContainer>
     </Nav>
   );
