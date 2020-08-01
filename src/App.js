@@ -36,6 +36,7 @@ function App(props) {
           <div className="container mt-2" style={{ marginTop: 40 }}>
             <Switch>
               <Route exact strict path="/" component={Home} />
+              <Route exact strict path="/coin-exchange*" component={Home} />
               <Route exact path="/about" component={About} />
 
               <AuthRoute exact path="/profile" component={Profile} />
