@@ -89,7 +89,7 @@ export default function Coin(props) {
         <>
             <tr>
                 <TdName>
-                    <Link style={LinkStyle} to={`Coin/${props.id}`}>
+                    <Link style={LinkStyle} to={`/coin/${props.id}`}>
                     {props.name}
                    </Link>
                 </TdName>
@@ -113,7 +113,7 @@ export default function Coin(props) {
                     </form>
                     </TdControls> : null }
             </tr>
-            <Route path="/Coin/:id" component={CoinPage} />
+            <Route path="/coin/:id" component={CoinPage} />
         </>
     ); 
     }

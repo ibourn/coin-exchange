@@ -25,6 +25,12 @@ const DivApp = styled.div`
 function App(props) {
   const [isAuth, setIsAuth] = useState(false);
 
+  /*
+  regex for routing :
+
+  to Home : (/|/coin-exchange)(/|) matches / and /coin-exchange/ and coin-exchange
+  to CoinPage : (|/coin-exchange)/coin/:id matches /coin/id and /coin-exchange/coin/id
+  */
 
   return (
     <DivApp>
@@ -35,14 +41,19 @@ function App(props) {
 
           <div className="container mt-2" style={{ marginTop: 40 }}>
             <Switch>
-              <Route exact strict path="/" component={Home} />
-              <Route exact strict path="/coin-exchange*" component={Home} />
-              <Route exact path="/about" component={About} />
+              {/* <Route exact strict path="/" component={Home} /> */}
+              {/* <Route exact strict path="/coin-exchange*" component={Home} /> */}
+              <Route exact strict path="(/|/coin-exchange)(/|)" component={Home} />
 
+              <Route exact path="/about" component={About} />
+  
               <AuthRoute exact path="/profile" component={Profile} />
 
               <Route exact path="/signup" component={SignUp} />
-              <Route exact path="/coin/:id" component={CoinPage} />
+
+              {/* <Route exact path="/coin/:id" component={CoinPage} /> */}
+              <Route exact  path="(|/coin-exchange)/coin/:id" component={CoinPage} />
+
               <Route path="*" component={NotFound} />
             </Switch>
           </div>
