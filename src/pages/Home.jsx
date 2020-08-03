@@ -125,14 +125,8 @@ function Home(props) {
       let newValues = { ...values };
 
       if (valueChangeId === values.key) {
-        const canBuy = newValues.price < balance;
-        const canSell = newValues.balance > 0;
-        const isTradable = ((balanceChange > 0) && canBuy) || ((balanceChange < 0) && canSell);
-
-        if (isTradable) {
         newValues.balance += balanceChange;
-        setBalance(oldBalance => oldBalance - balanceChange * newValues.price);
-        }
+        setBalance(oldBalance => oldBalance - balanceChange * newValues.price);    
       }
       return newValues;
     })
@@ -155,7 +149,8 @@ function Home(props) {
         handleRefresh={handleRefresh}
         handleTransaction={handleTransaction}
         showBalance={showBalance}
-        isAutoRefresh={isAutoRefresh} />
+        isAutoRefresh={isAutoRefresh} 
+        userBalance={balance}/>
     </>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useContext} from 'react';
+import React, { useContext } from 'react';
 import { Route, Link } from 'react-router-dom'
 import { UserContext } from "../UserContext/UserContext";
 import CoinPage from '../../pages/CoinPage';
@@ -72,19 +72,28 @@ export default function Coin(props) {
         props.handleRefresh(props.id);
     }
 
+
+    //Allow operation only if balance is enough
     const handleBuy = (event) => {
         event.preventDefault();
 
-        props.handleTransaction(true, props.id);
+        if(props.price <= props.userBalance){
+            props.handleTransaction(true, props.id);
+        }
     }
 
     const handleSell = (event) => {
         event.preventDefault();
 
-        props.handleTransaction(false, props.id);
+        if(props.balance > 0){
+            props.handleTransaction(false, props.id);
+        }
     }
 
-    
+    //Set the buy and sell button class to disabled if the operation is not possible
+    const isBuyable = `btn btn-success` + (props.price <= props.userBalance ? "" : ` disabled`);
+    const isSendable = `btn btn-danger` + (props.balance > 0 ?  "" : ` disabled`);
+
     return (
         <>
             <tr>
@@ -108,8 +117,8 @@ export default function Coin(props) {
                 {isAuth ? 
                     <TdControls>
                         <form action="">
-                            <ButtonX className="btn btn-success" onClick={handleBuy}>Buy</ButtonX>
-                            <ButtonX className="btn btn-danger" onClick={handleSell}>Sell</ButtonX>
+                            <ButtonX className={isBuyable} onClick={handleBuy}>Buy</ButtonX>
+                            <ButtonX className={isSendable} onClick={handleSell}>Sell</ButtonX>
                     </form>
                     </TdControls> : null }
             </tr>

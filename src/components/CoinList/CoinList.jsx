@@ -39,6 +39,7 @@ export default function CoinList(props) {
               price={price}
               change={change}
               isAutoRefresh={props.isAutoRefresh}
+              userBalance={props.userBalance}
             />
           )
         }
